@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "BundleWriteDemo"
-include ':app'
+//include ':app'
 include ':bundleAnnotation'
