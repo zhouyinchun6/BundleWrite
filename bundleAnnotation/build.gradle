@@ -26,6 +26,7 @@ subprojects {
                     groupId = 'com.example.MyLibrary'
                     artifactId = 'final'
                     version = '1.0'
+                    from components.java
                 }
             }
         }
