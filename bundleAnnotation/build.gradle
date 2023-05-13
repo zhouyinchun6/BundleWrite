@@ -9,27 +9,49 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+//task generateSourcesJar(type: Jar){
+//    from android.sourceSets.main.java.srcDirs
+//    classifier  'sources'
+//}
+
 
 //在控制台输入如下命令，本地编译看是否通过：
 // ./gradlew publishToMavenLocal
-subprojects {
-    /*apply plugin: 'maven-publish'*/
-    afterEvaluate {
-        publishing {
-            publications {
-                // Creates a Maven publication called "release".
-                release(MavenPublication) {
-                    // Applies the component for the release build variant.
-                    /*from components.release*/
+//subprojects {
+//    afterEvaluate {
+//        publishing {
+//            publications {
+//                // Creates a Maven publication called "release".
+//                release(MavenPublication) {
+//                    // Applies the component for the release build variant.
+//                    from components.release
+//
+//                    // You can then customize attributes of the publication as shown below.
+//                    groupId = 'com.example.MyLibrary'
+//                    artifactId = 'final'
+//                    version = '1.0'
+//                }
+//            }
+//        }
+//    }
+//}
 
-                    // You can then customize attributes of the publication as shown below.
-                    groupId = 'com.example.MyLibrary'
-                    artifactId = 'final'
-                    version = '1.0'
 
-                    from components.java
-                }
-            }
-        }
-    }
+//放开注释，运行后得到jar包
+
+task makeJar(type: Copy) {
+    //删除存在的
+    delete 'build/libs/myjar.jar'
+    //设置拷贝的文件
+    from('build/intermediates/aar_main_jar/debug/')
+    //打进jar包后的文件目录
+    into('build/libs/')
+    //将classes.jar放入build/libs/目录下
+    //include ,exclude参数来设置过滤
+    //（我们只关心classes.jar这个文件）
+    include('classes.jar')
+    //重命名
+    rename ('classes.jar', 'myjar.jar')
 }
+
+makeJar.dependsOn(build)
