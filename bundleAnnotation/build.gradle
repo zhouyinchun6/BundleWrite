@@ -18,7 +18,16 @@ subprojects {
         publishing {
             publications {
                 // Creates a Maven publication called "release".
-                release(MavenPublication) {
+                mavenJava(MavenPublication) {
+                    // 这里头是artifacts的配置信息，不填会采用默认的
+                    groupId = 'org.gradle.sample'
+                    artifactId = 'library'
+                    version = '1.1'
+
+                    from components.java
+                }
+
+               /* release(MavenPublication) {
                     // Applies the component for the release build variant.
                     from components.release
 
@@ -36,7 +45,7 @@ subprojects {
                     groupId = 'com.example.MyLibrary'
                     artifactId = 'final-debug'
                     version = '1.0'
-                }
+                }*/
             }
         }
     }
