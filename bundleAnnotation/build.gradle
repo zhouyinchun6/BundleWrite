@@ -13,43 +13,48 @@ java {
 //com.android.library方式
 //在控制台输入如下命令(./gradlew publishToMavenLocal)，本地编译看是否通过：
 // 本地编译放开，上传jitPack需注释
-subprojects {
-    afterEvaluate {
-        publishing {
-            publications {
-                // Creates a Maven publication called "release".
-                mavenJava(MavenPublication) {
-                    // 这里头是artifacts的配置信息，不填会采用默认的
-                    groupId = 'org.gradle.sample'
-                    artifactId = 'library'
-                    version = '1.1'
-
-                    from components.java
-                }
-
-               /* release(MavenPublication) {
-                    // Applies the component for the release build variant.
-                    from components.release
-
-                    // You can then customize attributes of the publication as shown below.
-                    groupId = 'com.example.MyLibrary'
-                    artifactId = 'final'
-                    version = '1.0'
-                }
-
-                // Creates a Maven publication called “debug”.
-                debug(MavenPublication) {
-                    // Applies the component for the debug build variant.
-                    from components.debug
-
-                    groupId = 'com.example.MyLibrary'
-                    artifactId = 'final-debug'
-                    version = '1.0'
-                }*/
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.jitpack'
+                artifactId = 'android-example'
+                version = '1.0'
             }
         }
     }
 }
+//subprojects {
+//    afterEvaluate {
+//        publishing {
+//            publications {
+//                // Creates a Maven publication called "release".
+//
+//               /* release(MavenPublication) {
+//                    // Applies the component for the release build variant.
+//                    from components.release
+//
+//                    // You can then customize attributes of the publication as shown below.
+//                    groupId = 'com.example.MyLibrary'
+//                    artifactId = 'final'
+//                    version = '1.0'
+//                }
+//
+//                // Creates a Maven publication called “debug”.
+//                debug(MavenPublication) {
+//                    // Applies the component for the debug build variant.
+//                    from components.debug
+//
+//                    groupId = 'com.example.MyLibrary'
+//                    artifactId = 'final-debug'
+//                    version = '1.0'
+//                }*/
+//            }
+//        }
+//    }
+//}
 
 
 //com.android.application方式
