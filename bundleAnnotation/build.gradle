@@ -1,7 +1,6 @@
 plugins {
     id 'java-library'
-//    id 'maven-publish'   //添加maven publish插件
-
+    id 'maven-publish'   //添加maven publish插件
 }
 
 java {
@@ -35,23 +34,3 @@ java {
 //        }
 //    }
 //}
-
-
-////放开注释，运行后得到jar包
-//
-//task makeJar(type: Copy) {
-//    //删除存在的
-//    delete 'build/libs/myjar.jar'
-//    //设置拷贝的文件
-//    from('build/intermediates/aar_main_jar/debug/')
-//    //打进jar包后的文件目录
-//    into('build/libs/')
-//    //将classes.jar放入build/libs/目录下
-//    //include ,exclude参数来设置过滤
-//    //（我们只关心classes.jar这个文件）
-//    include('classes.jar')
-//    //重命名
-//    rename ('classes.jar', 'myjar.jar')
-//}
-//
-//makeJar.dependsOn(build)
