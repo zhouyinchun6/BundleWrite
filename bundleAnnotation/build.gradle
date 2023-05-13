@@ -1,6 +1,6 @@
 plugins {
     id 'java-library'
-//    id 'maven-publish'   //添加maven publish插件，本地编译看是否通过，上传jitPack需注释
+    id 'maven-publish'   //添加maven publish插件，本地编译看是否通过，上传jitPack需注释
 }
 
 java {
@@ -10,9 +10,10 @@ java {
 
 
 
+//com.android.library方式
 //在控制台输入如下命令(./gradlew publishToMavenLocal)，本地编译看是否通过：
 // 本地编译放开，上传jitPack需注释
-/*subprojects {
+subprojects {
     afterEvaluate {
         publishing {
             publications {
@@ -26,7 +27,43 @@ java {
                     artifactId = 'final'
                     version = '1.0'
                 }
+
+                // Creates a Maven publication called “debug”.
+                debug(MavenPublication) {
+                    // Applies the component for the debug build variant.
+                    from components.debug
+
+                    groupId = 'com.example.MyLibrary'
+                    artifactId = 'final-debug'
+                    version = '1.0'
+                }
             }
         }
     }
-}*/
+}
+
+
+//com.android.application方式
+/*afterEvaluate {
+    publishing {
+        publications {
+            paidRelease(MavenPublication) {
+                // The following applies a component to this publication
+                // which results in publishing an app bundle.
+                from components.paidRelease_aab
+
+                groupId = 'com.example.MyApp'
+                artifactId = 'paid-release-aab'
+                version = '1.0'
+            }
+            paidDebug(MavenPublication) {
+                // The following applies a component to this publication
+                // which results in publishing APKs in a ZIP file.
+                from components.paidDebug_apk
+
+                groupId = 'com.example.MyApp'
+                artifactId = 'paid-debug-apks'
+                version = '1.0'
+            }
+        }
+    }*/
