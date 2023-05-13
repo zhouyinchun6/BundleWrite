@@ -1,6 +1,6 @@
 plugins {
     id 'java-library'
-    id 'maven-publish'   //添加maven publish插件，本地编译看是否通过，上传jitPack需注释
+//    id 'maven-publish'   //添加maven publish插件，本地编译放开，上传jitPack需注释/**/
 }
 
 java {
@@ -9,48 +9,28 @@ java {
 }
 
 
-
-//com.android.library方式
+//本地编译放开，上传jitPack需注释
 //在控制台输入如下命令(./gradlew publishToMavenLocal)，本地编译看是否通过：
-// 本地编译放开，上传jitPack需注释
-subprojects {
-    afterEvaluate {
-        publishing {
-            publications {
-                // Creates a Maven publication called "release".
-                release(MavenPublication) {
-                    from components.release
-                    groupId = 'com.github.jitpack'
-                    artifactId = 'android-example'
-                    version = '1.0'
-                }
-            }
-        }
-    }
-}
+//subprojects {
+//    afterEvaluate {
+//        publishing {
+//            publications {
+//                // Creates a Maven publication called "release".
+//                release(MavenPublication) {
+//                    from components.release
+//                    groupId = 'com.github.jitpack'
+//                    artifactId = 'android-example'
+//                    version = '1.0'
+//                }
+//            }
+//        }
+//    }
+//}
 
 
-//com.android.application方式
-/*afterEvaluate {
-    publishing {
-        publications {
-            paidRelease(MavenPublication) {
-                // The following applies a component to this publication
-                // which results in publishing an app bundle.
-                from components.paidRelease_aab
-
-                groupId = 'com.example.MyApp'
-                artifactId = 'paid-release-aab'
-                version = '1.0'
-            }
-            paidDebug(MavenPublication) {
-                // The following applies a component to this publication
-                // which results in publishing APKs in a ZIP file.
-                from components.paidDebug_apk
-
-                groupId = 'com.example.MyApp'
-                artifactId = 'paid-debug-apks'
-                version = '1.0'
-            }
-        }
-    }*/
+//注意事项
+/*
+1`官方地址 https://github.com/jitpack/android-example,但是他gradle版本低,好像还未兼容高版本gradle.
+2`上面两如果不注释,发布jitPack会提示ERROR: No build artifacts found.
+3`注释会有警告 Gradle 'publishToMavenLocal' task not found. Please add the 'maven-publish' or 'maven' plugin.但是可以编译成功,现在只有不管,期待后续官方修复
+*/
