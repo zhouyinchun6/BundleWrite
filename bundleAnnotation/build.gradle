@@ -10,7 +10,7 @@ java {
 }
 
 
-//在控制台输入如下命令：
+//在控制台输入如下命令，本地编译看是否通过：
 // ./gradlew publishToMavenLocal
 subprojects {
     /*apply plugin: 'maven-publish'*/
